@@ -1,3 +1,12 @@
 rapid land refactor/forge-261115105522 as v2026.2.2: merge tree cb7195e7c0e00641df1b9eab2fbf27e68079308b
 
 gates deferred to the close of batch 9e9bdbe: no gate ran on this merge tree at the land
+
+close of batch 9e9bdbe: gates on the final tree cb7195e7c0e00641df1b9eab2fbf27e68079308b
+
+gate=full
+command=true
+exit=0
+duration=0s
+at=2026-11-15T10:55:37Z
+--- log tail
