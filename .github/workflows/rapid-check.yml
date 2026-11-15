@@ -48,7 +48,7 @@ jobs:
             if [ -n "${BEFORE:-}" ] && [ "$BEFORE" != "$zero" ] && git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then
               base="$BEFORE"
             else
-              base=$(git rev-list --first-parent --max-parents=0 refs/heads/dev | tail -n 1)
+              base=$(git log --first-parent --format='%H %s' refs/heads/dev | awk '{ l = $1 } substr($0, 42) == "[NEW] Seed the rapid workflow" { s = $1 } END { print (s != "" ? s : l) }')
             fi
           fi
           if git cat-file -e "$base:.rapid/rapid" 2>/dev/null; then
@@ -101,7 +101,7 @@ jobs:
           base=refs/heads/dev
           if [ "$GITHUB_REF" = refs/heads/dev ]; then
             if [ -n "${BEFORE:-}" ] && [ "$BEFORE" != "$zero" ] && git cat-file -e "$BEFORE^{commit}" 2>/dev/null; then base="$BEFORE"
-            else base=$(git rev-list --first-parent --max-parents=0 refs/heads/dev | tail -n 1); fi
+            else base=$(git log --first-parent --format='%H %s' refs/heads/dev | awk '{ l = $1 } substr($0, 42) == "[NEW] Seed the rapid workflow" { s = $1 } END { print (s != "" ? s : l) }'); fi
           fi
           if git cat-file -e "$base:.rapid/rapid" 2>/dev/null; then
             # the repository holds its own rapid: the checker is the .rapid the base holds
